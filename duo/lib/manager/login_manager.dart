@@ -68,7 +68,10 @@ class LoginManager {
     }
   }
 
-  logout() {
+  logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(Constant.SP_KEY_USER_NAME);
+    prefs.remove(Constant.SP_KEY_PASSWORD);
     this._loginUserModel.loginFlag = false;
     this._loginUserModel.userId = 0;
     this._loginUserModel.userName = '';

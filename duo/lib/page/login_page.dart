@@ -14,7 +14,7 @@ class LoginPageState extends State<LoginPage> {
   var _scaffoldkey = new GlobalKey<ScaffoldState>();
   String _userName, _password;
   bool _isObscure = true;
-  Color _eyeColor;
+  Color _eyeColor = Colors.white54;
 
   @override
   void initState() {
@@ -26,7 +26,7 @@ class LoginPageState extends State<LoginPage> {
     return Scaffold(
         key: _scaffoldkey,
         body: new Container(
-            decoration: BoxDecoration(color: Color(0xff007fff)),
+            decoration: BoxDecoration(color: Colors.blue),
             child: Form(
                 key: _formKey,
                 child: ListView(
@@ -56,7 +56,7 @@ class LoginPageState extends State<LoginPage> {
         child: RaisedButton(
             child: Text(
               '登录',
-              style: TextStyle(color: Color(0xff007fff), fontSize: 20),
+              style: TextStyle(color: Colors.blue, fontSize: 20),
             ),
             color: Colors.white,
             onPressed: () {
@@ -69,8 +69,10 @@ class LoginPageState extends State<LoginPage> {
                     Navigator.of(context)
                         .pushReplacementNamed('/MovieListPage');
                   } else {
-                    final snackBar =
-                        new SnackBar(content: new Text('登录失败，请检查用户名或密码'),backgroundColor: Colors.red,);
+                    final snackBar = new SnackBar(
+                      content: new Text('登录失败，请检查用户名或密码'),
+                      backgroundColor: Colors.red,
+                    );
                     _scaffoldkey.currentState.showSnackBar(snackBar);
                   }
                 });
@@ -90,9 +92,10 @@ class LoginPageState extends State<LoginPage> {
         }
       },
       style: new TextStyle(color: Colors.white, fontSize: 24),
+      cursorColor: Colors.white,
       decoration: InputDecoration(
           labelText: '密码',
-          labelStyle: TextStyle(color: Colors.white70, fontSize: 18),
+          labelStyle: TextStyle(color: Colors.white, fontSize: 18),
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.white, width: 1)),
           focusedBorder: UnderlineInputBorder(
@@ -114,9 +117,10 @@ class LoginPageState extends State<LoginPage> {
   TextFormField buildUserNameTextField() {
     return TextFormField(
       style: new TextStyle(color: Colors.white, fontSize: 24),
+      cursorColor: Colors.white,
       decoration: InputDecoration(
         labelText: '用户名',
-        labelStyle: TextStyle(color: Colors.white70, fontSize: 18),
+        labelStyle: TextStyle(color: Colors.white, fontSize: 18),
         enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white, width: 1)),
         focusedBorder: UnderlineInputBorder(

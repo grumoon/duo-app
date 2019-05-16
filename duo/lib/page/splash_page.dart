@@ -48,7 +48,7 @@ class SplashPageState extends State<SplashPage> {
       title: 'DUO',
       home: new Scaffold(
         body: new Container(
-          decoration: new BoxDecoration(color: Color(0xff007fff)),
+          decoration: new BoxDecoration(color: Colors.blue),
           child: new Center(
             child: new Text(
               'D U O',
