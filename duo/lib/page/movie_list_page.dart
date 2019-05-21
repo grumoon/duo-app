@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:duo/constant/constant.dart';
 import 'package:duo/manager/login_manager.dart';
 import 'package:duo/model/movie_model.dart';
+import 'package:duo/page/movie_play_page.dart';
 import 'package:duo/page/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -30,12 +31,18 @@ Future<List<MovieModel>> fetchMovieList() async {
   return movieList;
 }
 
-List<Widget> getWidgetList(List<MovieModel> movieList) {
+List<Widget> getWidgetList(BuildContext context, List<MovieModel> movieList) {
   List<Widget> widgetList = new List();
   movieList.forEach((item) {
     widgetList.add(new ListTile(
-      title: new Text(item.name),
-    ));
+        title: new Text(item.name),
+        onTap: () {
+          Navigator.push(
+            context,
+            new MaterialPageRoute(
+                builder: (context) => new MoviePlayPage(movieModel: item)),
+          );
+        }));
   });
   return widgetList;
 }
@@ -82,11 +89,14 @@ class MovieListPageState extends State<MovieListPage> {
               future: fetchMovieList(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return new ListView(children: getWidgetList(snapshot.data));
+                  return new ListView(
+                      children: ListTile.divideTiles(
+                              context: context,
+                              tiles: getWidgetList(context, snapshot.data))
+                          .toList());
                 } else if (snapshot.hasError) {
                   return new Text("${snapshot.error}");
                 }
-
                 // By default, show a loading spinner
                 return new CircularProgressIndicator();
               },

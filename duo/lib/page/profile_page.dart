@@ -29,34 +29,39 @@ class ProfilePageState extends State<ProfilePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                new Expanded(
+                    child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                        margin: EdgeInsets.fromLTRB(15, 30, 15, 0),
+                        child: new Row(children: <Widget>[
+                          Container(
+                              width: 80,
+                              child:
+                                  Text('用户名', style: TextStyle(fontSize: 20))),
+                          Text(
+                            '${LoginManager.instance.getLoginUserInfo().userName}',
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ])),
+                    Container(
+                        margin: EdgeInsets.fromLTRB(15, 30, 15, 0),
+                        child: new Row(children: <Widget>[
+                          Container(
+                              width: 80,
+                              child: Text('昵   称',
+                                  style: TextStyle(fontSize: 20))),
+                          Text(
+                            '${LoginManager.instance.getLoginUserInfo().nick}',
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ]))
+                  ],
+                )),
                 Container(
-                    margin: EdgeInsets.fromLTRB(15, 30, 15, 0),
-                    child: new Row(
-                      children: <Widget>[
-                        Container(
-                            width: 80,
-                            child: Text('用户名', style: TextStyle(fontSize: 20))),
-                        Text(
-                          '${LoginManager.instance.getLoginUserInfo().userName}',
-                          style: TextStyle(fontSize: 20),
-                        )
-                      ],
-                    )),
-                Container(
-                    margin: EdgeInsets.fromLTRB(15, 30, 15, 0),
-                    child: new Row(
-                      children: <Widget>[
-                        Container(
-                            width: 80,
-                            child: Text('昵   称', style: TextStyle(fontSize: 20))),
-                        Text(
-                          '${LoginManager.instance.getLoginUserInfo().nick}',
-                          style: TextStyle(fontSize: 20),
-                        )
-                      ],
-                    )),
-                Container(
-                    margin: EdgeInsets.fromLTRB(15, 200, 15, 0),
+                    margin: EdgeInsets.fromLTRB(15, 0, 15, 30),
                     child: Center(
                       child: SizedBox(
                           height: 50.0,
@@ -75,7 +80,7 @@ class ProfilePageState extends State<ProfilePage> {
                                 Navigator.of(context).pushNamedAndRemoveUntil(
                                     '/LoginPage', ModalRoute.withName('/'));
                               })),
-                    ))
+                    )),
               ],
             )));
   }
