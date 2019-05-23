@@ -159,7 +159,7 @@ class MoviePlayPageState extends State<MoviePlayPage> {
     }
 
     this.displaySubtitleItemList.clear();
-    for (int i = targetIndex - 2; i <= targetIndex + 2; i++) {
+    for (int i = targetIndex - 3; i <= targetIndex + 3; i++) {
       if (i < 0 || i >= totalLength) {
         this.displaySubtitleItemList.add(new SubtitleItemModel(
             index: -1,
@@ -186,8 +186,8 @@ class MoviePlayPageState extends State<MoviePlayPage> {
                           ? Colors.lightGreen
                           : Colors.black,
                       fontSize: _isNowPlaying(position, item.start, item.end)
-                          ? 18
-                          : 16,
+                          ? 16
+                          : 14,
                       fontWeight: _isNowPlaying(position, item.start, item.end)
                           ? FontWeight.bold
                           : FontWeight.normal))
@@ -197,8 +197,8 @@ class MoviePlayPageState extends State<MoviePlayPage> {
                           ? Colors.lightGreen
                           : Colors.black,
                       fontSize: _isNowPlaying(position, item.start, item.end)
-                          ? 18
-                          : 16,
+                          ? 16
+                          : 14,
                       fontWeight: _isNowPlaying(position, item.start, item.end)
                           ? FontWeight.bold
                           : FontWeight.normal) //文字颜色
@@ -314,12 +314,12 @@ class MoviePlayPageState extends State<MoviePlayPage> {
         new Row(mainAxisSize: MainAxisSize.min, children: [
           new IconButton(
               onPressed: isPlaying ? () => pause() : () => play(),
-              iconSize: 64.0,
+              iconSize: 48.0,
               icon: new Icon(isPlaying ? Icons.pause : Icons.play_arrow),
               color: Colors.cyan),
           new IconButton(
               onPressed: isPlaying || isPaused ? () => stop() : null,
-              iconSize: 64.0,
+              iconSize: 48.0,
               icon: new Icon(Icons.stop),
               color: Colors.cyan),
         ]),
