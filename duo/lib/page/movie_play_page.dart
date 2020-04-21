@@ -69,16 +69,32 @@ class MoviePlayPageState extends State<MoviePlayPage> {
     List<String> subtitleStringList = subtitleResponse.split('\n');
 
     this.subtitleItemList.clear();
-    for (int i = 0; i < subtitleStringList.length - 4; i += 4) {
-      SubtitleItemModel subtitleItemModel = new SubtitleItemModel();
-      subtitleItemModel.index = int.parse(subtitleStringList[i]);
-      String startStr = subtitleStringList[i + 1].split('-->')[0].trim();
-      String endStr = subtitleStringList[i + 1].split('-->')[1].trim();
+    
+    int step = 0;
+    SubtitleItemModel subtitleItemModel;
+    for (String subtitleStringItem in subtitleStringList) {
+      if (step == 0 && subtitleStringItem.length != 0) {
+        subtitleItemModel = new SubtitleItemModel();
+        subtitleItemModel.content = "";
+        subtitleItemModel.index = int.parse(subtitleStringItem);
+        step = 1;
+      } else if (step == 1) {
+        String startStr = subtitleStringItem.split('-->')[0].trim();
+        String endStr = subtitleStringItem.split('-->')[1].trim();
 
-      subtitleItemModel.start = _parseDuration(startStr);
-      subtitleItemModel.end = _parseDuration(endStr);
-      subtitleItemModel.content = subtitleStringList[i + 2];
-      this.subtitleItemList.add(subtitleItemModel);
+        subtitleItemModel.start = _parseDuration(startStr);
+        subtitleItemModel.end = _parseDuration(endStr);
+
+        step = 2;
+      } else if (step == 2) {
+        if (subtitleStringItem.length == 0) {
+          this.subtitleItemList.add(subtitleItemModel);
+          print('this.subtitleItemList.length = ${this.subtitleItemList.length}');
+          step = 0;
+        } else {
+          subtitleItemModel.content += subtitleStringItem;
+        }
+      }
     }
 
     _featchSubtitlFlag = true;
