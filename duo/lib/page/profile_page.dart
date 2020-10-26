@@ -24,6 +24,10 @@ class ProfilePageState extends State<ProfilePage> {
         home: new Scaffold(
             appBar: new AppBar(
               title: new Text('个人信息'),
+              leading: new IconButton(
+                icon: new Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
             ),
             body: new Column(
               mainAxisAlignment: MainAxisAlignment.start,

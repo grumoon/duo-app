@@ -69,7 +69,7 @@ class MoviePlayPageState extends State<MoviePlayPage> {
     List<String> subtitleStringList = subtitleResponse.split('\n');
 
     this.subtitleItemList.clear();
-    
+
     int step = 0;
     SubtitleItemModel subtitleItemModel;
     for (String subtitleStringItem in subtitleStringList) {
@@ -89,7 +89,8 @@ class MoviePlayPageState extends State<MoviePlayPage> {
       } else if (step == 2) {
         if (subtitleStringItem.length == 0) {
           this.subtitleItemList.add(subtitleItemModel);
-          print('this.subtitleItemList.length = ${this.subtitleItemList.length}');
+          print(
+              'this.subtitleItemList.length = ${this.subtitleItemList.length}');
           step = 0;
         } else {
           subtitleItemModel.content += subtitleStringItem;
@@ -291,6 +292,10 @@ class MoviePlayPageState extends State<MoviePlayPage> {
         home: new Scaffold(
           appBar: new AppBar(
             title: new Text(this.movieModel.name),
+            leading: new IconButton(
+              icon: new Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
           ),
           body: new Column(
               mainAxisAlignment: MainAxisAlignment.start,
